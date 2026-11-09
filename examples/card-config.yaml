@@ -1,0 +1,91 @@
+# Example Baugh Home Card config: Solis S6 hybrid inverter, two batteries,
+# Sync EV charger (OCPP) and Axle VPP events.
+# Replace the entity IDs with your own. Every entity is optional.
+
+type: custom:baugh-home-card
+view: realistic            # realistic | hologram
+day_night: auto
+sun_entity: sun.sun
+weather: weather.home      # any weather entity, e.g. Met Office
+house_facing: 45
+threshold: 20
+show_text: true
+battery_count: 2           # set to 1 if you only have one battery
+battery_soc_text_size: 2.05
+invert_battery: true
+
+# Solar
+pv_power: sensor.solis_total_pv_power
+pv1_power: sensor.solis_pv_power_1
+pv2_power: sensor.solis_pv_power_2
+pv_energy_today: sensor.solis_pv_today_energy_generation
+
+# House and grid
+load_power: sensor.solis_household_load_power
+grid_power: sensor.solis_grid_power_net          # + import / - export
+grid_import_power: sensor.solis_grid_import_power
+grid_export_power: sensor.solis_grid_export_power
+grid_import_energy: sensor.solis_today_energy_imported_from_grid
+grid_export_energy: sensor.solis_today_energy_fed_into_grid
+
+# Battery
+battery_soc: sensor.solis_battery_soc
+battery_power: sensor.solis_battery_net_power
+battery_charge_energy: sensor.solis_today_battery_charge_energy
+battery_discharge_energy: sensor.solis_today_battery_discharge_energy
+battery_time_to_full: sensor.solis_battery_full_time
+battery_time_to_empty: sensor.solis_battery_empty_time
+
+# Second battery (only used when battery_count: 2)
+battery2_soc: sensor.battery2_soc
+battery2_power: sensor.battery2_net_power
+battery2_charge_energy: sensor.battery2_today_charge_energy
+battery2_discharge_energy: sensor.battery2_today_discharge_energy
+battery2_time_to_full: sensor.battery2_full_time
+battery2_time_to_empty: sensor.battery2_empty_time
+
+# Car and charger
+car_soc: sensor.car_battery
+ev_power: sensor.sync_charger_power_active_import
+charger_status: sensor.sync_charger_status_connector
+charger_current: sensor.sync_charger_current_import
+charger_session_energy: sensor.sync_charger_energy_session
+
+# Axle VPP event
+axle_start: sensor.axle_vpp_axle_start_time
+axle_end: sensor.axle_vpp_axle_end_time
+axle_lead: 60
+
+grid_options:
+  rows: auto
+
+# Where the car and equipment sit in the scene
+layout:
+  car:      { x: 13.2, 'y': 1.1,   scale: 1.25 }
+  battery:  { x: 0.6,  'y': -10.3, scale: 3.05 }
+  inverter: { x: 14.1, 'y': -8.1,  scale: 4 }
+  meter:    { x: 20.2, 'y': -2.2,  scale: 3.9 }
+
+# Where each text block sits (x / y in % of the card)
+text:
+  meter_power:    { x: 75.5, 'y': 77.5 }
+  meter_energy:   { x: 84,   'y': 86,   or: flat }
+  pv_strings:     { x: 75.5, 'y': 41,   or: flat }
+  pv_total:       { x: 75.5, 'y': 51.5, size: 1.45, or: flat }
+  battery1_power: { x: 12,   'y': 64.5 }
+  battery1:       { x: 10.5, 'y': 83.5 }
+  battery2_power: { x: 19,   'y': 70 }
+  battery2:       { x: 19.5, 'y': 88 }
+  house_load:     { 'y': 56.5, size: 2.1 }
+  car_soc:        { x: 64,   'y': 77.5, size: 1.75 }
+  charger_status: { x: 69,   'y': 57.5, size: 0.6 }
+  charger:        { x: 71,   'y': 62 }
+  axle:           { 'y': 52.5 }
+
+labels:
+  grid_import_energy: Imported
+  grid_export_energy: Exported
+  pv1_power: Garage
+  pv2_power: Shed
+  axle_start: Axle Start
+  axle_end: Axle Stop
