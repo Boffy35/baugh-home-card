@@ -18,7 +18,8 @@ An animated home-energy scene for Home Assistant dashboards. A house, garage, ca
 - **Weather effects** from any weather entity: sun, cloud, rain, heavy rain, snow, fog and lightning.
 - **Battery state of charge** shown on each battery, colour-coded from red to green. Supports one or two batteries.
 - **EV charger status**, with friendly names for OCPP states such as "Plugged in" and "Paused by car".
-- **Axle VPP events:** the scene pulses during an Axle event, and from a set time before it starts.
+- **Axle VPP events:** the inverter pulses during an Axle event, and from a set time before it starts.
+- **Lovelace-style front-end:** everything is configured using a lovelace style front end, where you can move all objects and add your specific entities.
 - **Text overlays** for power, energy, time to full or empty, charger figures and more. Each block can be moved, resized and relabelled, and a button on the card shows or hides them.
 - **Tap anything** (house, battery, inverter, meter, car or garage) to open its entity.
 - **Visual editor**, which also suggests entities from your system when you first add the card.
